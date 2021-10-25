@@ -3,7 +3,11 @@ import PropTypes from 'prop-types';
 
 class ListCategory extends Component {
   render() {
-    const { name, id } = this.props;
+    const {
+      name,
+      id,
+      actualizeCategoryState,
+    } = this.props;
     return (
       <label htmlFor={ id }>
         { name }
@@ -13,15 +17,23 @@ class ListCategory extends Component {
           name="category_name"
           value={ id }
           data-testid="category"
+          onClick={ actualizeCategoryState }
         />
       </label>
     );
   }
 }
 
-export default ListCategory;
+ListCategory.defaultProps = {
+  name: '',
+  id: '',
+  actualizeCategoryState: () => {},
+};
 
 ListCategory.propTypes = ({
-  name: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
+  name: PropTypes.string,
+  id: PropTypes.string,
+  actualizeCategoryState: PropTypes.func,
 });
+
+export default ListCategory;
