@@ -1,0 +1,19 @@
+.cart-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.search-cart {
+  display: flex;
+  align-items: center;
+}
+
+.search-cart img {
+  width: 30px;
+}
+
+.search-cart input {
+  height: 20px;
+  width: 1000px;
+}
