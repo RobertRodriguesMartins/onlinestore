@@ -6,13 +6,15 @@ import {
   Route,
 } from 'react-router-dom';
 import Home from './pages/Home';
+import CartPage from './pages/CartPage';
 
 class App extends React.Component {
   render() {
     return (
       <BrowserRouter>
         <Switch>
-          <Route path="/" component={ Home } />
+          <Route exact path="/" component={ Home } />
+          <Route path="/cart-page" component={ CartPage } />
         </Switch>
       </BrowserRouter>
     );

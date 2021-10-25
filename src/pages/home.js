@@ -1,4 +1,6 @@
 import React from 'react';
+import Carrinho from './Carrinho';
+import './css/CartPage.css'
 import { getProductsFromCategoryAndQuery } from '../services/api';
 import Card from '../components/Card';
 
@@ -96,6 +98,12 @@ class Home extends React.Component {
         {
           this.renderCardContainer(startPage, showLoading, productArray)
         }
+        <div className="cart-page">
+          <div className="search-cart">
+            <input type='text' />
+            <Carrinho />
+          </div>
+        </div>
       </div>
     );
   }
