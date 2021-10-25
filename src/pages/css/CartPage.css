@@ -1,12 +1,12 @@
 .cart-page {
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
 .search-cart {
-  display: flex;
   align-items: center;
+  display: flex;
 }
 
 .search-cart img {
