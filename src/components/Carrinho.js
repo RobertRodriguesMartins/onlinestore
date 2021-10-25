@@ -15,7 +15,7 @@ class Carrinho extends React.Component {
           />
         </Link>
       </div>
-    )
+    );
   }
 }
 
