@@ -5,8 +5,8 @@
 }
 
 .search-cart {
-  display: flex;
   align-items: center;
+  display: flex;
 }
 
 .search-cart img {
