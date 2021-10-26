@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { getCart } from '../services/CartItems';
 
 class CartPage extends React.Component {
@@ -13,12 +14,20 @@ class CartPage extends React.Component {
               const product = el[Object.keys(el)[0]];
               return (
                 <div key={ index }>
-                  <h3 data-testid="shopping-cart-product-name">{ product.title }</h3>
-                  <img
-                    src={ product.thumbnail }
-                    alt={ product.title }
-                  />
-                  <p data-testid="shopping-cart-product-quantity">{ el.qnt }</p>
+                  <div>
+                    <h3 data-testid="shopping-cart-product-name">{ product.title }</h3>
+                    <img
+                      src={ product.thumbnail }
+                      alt={ product.title }
+                    />
+                    <p data-testid="shopping-cart-product-quantity">{ el.qnt }</p>
+                  </div>
+                  <Link
+                    to="/checkout"
+                    data-testid="checkout-products"
+                  >
+                    Finalizar compra
+                  </Link>
                 </div>
               );
             })) : <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>

@@ -8,6 +8,7 @@ import {
 import Home from './pages/Home';
 import CartPage from './pages/CartPage';
 import ProductPage from './pages/ProductPage';
+import Checkout from './pages/Checkout';
 
 class App extends React.Component {
   render() {
@@ -20,6 +21,7 @@ class App extends React.Component {
           />
           <Route exact path="/" component={ Home } />
           <Route path="/cart-page" component={ CartPage } />
+          <Route path="/checkout" component={ Checkout } />
         </Switch>
       </BrowserRouter>
     );

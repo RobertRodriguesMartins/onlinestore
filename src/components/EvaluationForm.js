@@ -2,7 +2,7 @@ import React from 'react';
 
 class EvaluationForm extends React.Component {
   render() {
-    return(
+    return (
       <form>
         <textarea data-testid="product-detail-evaluation" />
       </form>
