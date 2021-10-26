@@ -74,6 +74,13 @@ class Home extends React.Component {
     });
   }
 
+  actualizeCategoryState = (event) => {
+    const { value } = event.target;
+    this.setState({
+      category: value,
+    }, this.getProductArray);
+  }
+
   render() {
     const {
       productArray,
@@ -83,30 +90,31 @@ class Home extends React.Component {
     return (
       <div>
         <div>
-          <CategoriesContainer />
+          <CategoriesContainer
+            actualizeCategoryState={ this.actualizeCategoryState }
+          />
         </div>
-        <input
-          type="text"
-          id="query-input"
-          data-testid="query-input"
-          placeholder="Busque seu produto"
-          onChange={ this.actualizeQueryState }
-        />
-        <button
-          data-testid="query-button"
-          type="button"
-          onClick={ this.getProductArray }
-        >
-          Pesquisar
-        </button>
-        {
-          this.renderCardContainer(startPage, showLoading, productArray)
-        }
         <div className="cart-page">
           <div className="search-cart">
-            <input type="text" />
+            <input
+              type="text"
+              id="query-input"
+              data-testid="query-input"
+              placeholder="Busque seu produto"
+              onChange={ this.actualizeQueryState }
+            />
+            <button
+              data-testid="query-button"
+              type="button"
+              onClick={ this.getProductArray }
+            >
+              Pesquisar
+            </button>
             <Carrinho />
           </div>
+          {
+            this.renderCardContainer(startPage, showLoading, productArray)
+          }
         </div>
       </div>
     );
