@@ -4,6 +4,7 @@ import './css/CartPage.css';
 import { getProductsFromCategoryAndQuery } from '../services/api';
 import Card from '../components/Card';
 import CategoriesContainer from '../components/CategoriesContainer';
+import CardButton from '../components/CardButton';
 
 class Home extends React.Component {
   constructor() {
@@ -56,11 +57,15 @@ class Home extends React.Component {
       <div>
         {
           productArray.map((product, index) => (
-            <Card
-              key={ index }
-              product={ product }
-              index={ index }
-            />
+            <div key={ index }>
+              <Card
+                product={ product }
+                index={ index }
+              />
+              <CardButton
+                product={ product }
+              />
+            </div>
           ))
         }
       </div>
