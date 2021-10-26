@@ -3,13 +3,13 @@ import { getCart } from '../services/CartItems';
 
 class CartPage extends React.Component {
   render() {
-    const LOCAL_iTEMS = getCart();
+    const LOCAL_ITEMS = getCart();
 
     return (
       <div>
         {
-          LOCAL_iTEMS.length > 0 ? (
-            LOCAL_iTEMS.map((el, index) => {
+          LOCAL_ITEMS.length > 0 ? (
+            LOCAL_ITEMS.map((el, index) => {
               const product = el[Object.keys(el)[0]];
               return (
                 <div key={ index }>
@@ -18,12 +18,10 @@ class CartPage extends React.Component {
                     src={ product.thumbnail }
                     alt={ product.title }
                   />
-                  <p data-testid="shopping-cart-product-quantity">{ el.qnt }</p> 
-               </div>
-              )
-            })) : (
-            <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
-          )
+                  <p data-testid="shopping-cart-product-quantity">{ el.qnt }</p>
+                </div>
+              );
+            })) : <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
         }
       </div>
     );

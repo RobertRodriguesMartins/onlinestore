@@ -1,9 +1,8 @@
 const local = localStorage;
 
 export function getCart() {
-
   if (local.getItem('cart') === null) {
-    local.setItem('cart', JSON.stringify([]))
+    local.setItem('cart', JSON.stringify([]));
   }
   return JSON.parse(local.getItem('cart'));
 }
