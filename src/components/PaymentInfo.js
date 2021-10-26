@@ -6,59 +6,63 @@ class PaymentInfo extends React.Component {
       <form>
         <label htmlFor="fullname">
           Name:
-          <input 
+          <input
             id="fullname"
-            type="text" 
-            data-testid="checkout-fullname" 
+            type="text"
+            data-testid="checkout-fullname"
           />
         </label>
 
         <label htmlFor="email">
           Email:
-          <input 
+          <input
             id="email"
-            type="email" 
-            data-testid="checkout-email" 
+            type="email"
+            data-testid="checkout-email"
           />
         </label>
 
         <label htmlFor="cpf">
           CPF:
-          <input 
+          <input
             id="cpf"
-            type="text" 
-            data-testid="checkout-cpf" 
+            type="text"
+            data-testid="checkout-cpf"
           />
         </label>
 
         <label htmlFor="phone">
           Phone number:
-          <input 
+          <input
             id="phone"
-            type="text" 
-            data-testid="checkout-phone" 
+            type="text"
+            data-testid="checkout-phone"
           />
         </label>
 
         <label htmlFor="cep">
           CEP:
-          <input 
+          <input
             id="cep"
-            type="text" 
-            data-testid="checkout-cep" 
+            type="text"
+            data-testid="checkout-cep"
           />
         </label>
 
         <label htmlFor="address">
           Address:
-          <input 
+          <input
             id="address"
-            type="text" 
-            data-testid="checkout-address" 
+            type="text"
+            data-testid="checkout-address"
           />
         </label>
 
-        <button>Checkout</button>
+        <button
+          type="button"
+        >
+          Checkout
+        </button>
       </form>
     );
   }
