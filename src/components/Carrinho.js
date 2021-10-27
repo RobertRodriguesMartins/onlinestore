@@ -1,7 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { getCart } from '../services/CartItems';
 
 class Carrinho extends React.Component {
+  qualquerNome = () => {
+    const ITEMS_QT = getCart().reduce((acc, curr) => {
+      const quantity = curr.qnt;
+      return acc + quantity;
+    }, 0);
+
+    return ITEMS_QT;
+  }
+
   render() {
     return (
       <div>
@@ -14,6 +24,7 @@ class Carrinho extends React.Component {
             alt="Carrinho de compras"
           />
         </Link>
+        <span data-testid="shopping-cart-size">{ this.qualquerNome() }</span>
       </div>
     );
   }

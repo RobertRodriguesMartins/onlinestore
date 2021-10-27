@@ -62,6 +62,7 @@ class CartPage extends React.Component {
                           addItemToCart(product);
                           this.updatePage();
                         } }
+                        disabled={ (product.available_quantity - el.qnt) <= 0 }
                       >
                         +
                       </button>
@@ -71,6 +72,9 @@ class CartPage extends React.Component {
                       >
                         x
                       </button>
+                      <span>
+                        { `Em estoque: ${product.available_quantity - el.qnt}` }
+                      </span>
                     </div>
                   );
                 })

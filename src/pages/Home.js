@@ -15,7 +15,14 @@ class Home extends React.Component {
       showLoading: false,
       category: undefined,
       startPage: true,
+      refresh: false,
     };
+  }
+
+  updatePage = () => {
+    this.setState((previousState) => ({
+      refresh: !previousState.refresh,
+    }));
   }
 
   getProductArray = async () => {
@@ -64,6 +71,7 @@ class Home extends React.Component {
               />
               <CardButton
                 product={ product }
+                updatePage={ this.updatePage }
               />
             </div>
           ))
