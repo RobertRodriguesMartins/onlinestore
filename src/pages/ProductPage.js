@@ -39,6 +39,10 @@ class ProductPage extends React.Component {
   }
 
   renderProduct = (showLoading, product) => {
+    let productShipping;
+    if (product.shipping) {
+      productShipping = product.shipping.free_shipping;
+    }
     if (showLoading) {
       return (
         <h2>
@@ -61,6 +65,11 @@ class ProductPage extends React.Component {
           product={ product }
           updatePage={ this.updatePage }
         />
+        {
+          productShipping && (
+            <span data-testid="free-shipping"> Frete grátis disponível </span>
+          )
+        }
       </div>
     );
   }

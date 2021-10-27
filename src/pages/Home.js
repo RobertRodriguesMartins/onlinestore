@@ -69,6 +69,13 @@ class Home extends React.Component {
                 product={ product }
                 index={ index }
               />
+              {
+                product.shipping.free_shipping && (
+                  <span data-testid="free-shipping">
+                    Frete Grátis disponível.
+                  </span>
+                )
+              }
               <CardButton
                 product={ product }
                 updatePage={ this.updatePage }
