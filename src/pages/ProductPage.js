@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Carrinho from '../components/Carrinho';
 import { getProductsFromCategoryAndQuery } from '../services/api';
-import CardButton from '../components/CardButton';
-
+import CardButtonDetail from '../components/CardButtonDetail';
 
 class ProductPage extends React.Component {
   constructor() {
@@ -49,9 +48,9 @@ class ProductPage extends React.Component {
     }
     return (
       <div>
-        <img src={product.thumbnail} alt={product.title} />
-        <h3 data-testid="product-detail-name">{product.title}</h3>
-        <CardButton product={product} />
+        <img src={ product.thumbnail } alt={ product.title } />
+        <h3 data-testid="product-detail-name">{ product.title }</h3>
+        <CardButtonDetail product={ product } />
       </div>
     );
   }
