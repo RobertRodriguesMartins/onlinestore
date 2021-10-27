@@ -72,7 +72,9 @@ class CartPage extends React.Component {
                       >
                         x
                       </button>
-                      <span>{ product.available_quantity - el.qnt }</span>
+                      <span>
+                        { `Em estoque: ${product.available_quantity - el.qnt}` }
+                      </span>
                     </div>
                   );
                 })
