@@ -11,6 +11,7 @@ class EvaluationForm extends React.Component {
       checkboxValue: 0,
       message: '',
       refresh: false,
+      isDisabled: true,
     };
   }
 
@@ -24,6 +25,15 @@ class EvaluationForm extends React.Component {
     });
     this.setState({
       checkboxValue: target.value,
+    }, this.validationForm);
+  }
+
+  validationForm = () => {
+    const { email, checkboxValue } = this.state;
+    const validEmail = email.includes('@');
+    const validCheckbox = checkboxValue !== 0;
+    this.setState({
+      isDisabled: !(validEmail && validCheckbox),
     });
   }
 
@@ -31,12 +41,12 @@ class EvaluationForm extends React.Component {
     const { name, value } = target;
     this.setState({
       [name]: value,
-    });
+    }, this.validationForm);
   }
 
   render() {
     const { product } = this.props;
-    const { email, message, checkboxValue } = this.state;
+    const { email, message, checkboxValue, isDisabled } = this.state;
     return (
       <div>
 
@@ -92,16 +102,12 @@ class EvaluationForm extends React.Component {
             />
           </label>
           <button
-            type="submit"
-            onClick={ (event) => {
+            type="button"
+            disabled={ isDisabled }
+            onClick={ () => {
               this.setState((prevState) => ({
                 refresh: !prevState.refresh,
               }));
-
-              event.preventDefault();
-              if (checkboxValue === 0) {
-                window.alert('Adicione uma nota!');
-              }
               addReview({
                 productId: product.id,
                 email,
