@@ -62,7 +62,7 @@ class ProductPage extends React.Component {
         {
           this.renderProduct(showLoading, product)
         }
-        <EvaluationForm />
+        <EvaluationForm product={ product } />
       </div>
     );
   }
