@@ -10,11 +10,18 @@ class ProductPage extends React.Component {
     this.state = {
       product: {},
       showLoading: false,
+      refresh: false,
     };
   }
 
   componentDidMount() {
     this.getProductById();
+  }
+
+  updatePage = () => {
+    this.setState((previousState) => ({
+      refresh: !previousState.refresh,
+    }));
   }
 
   getProductById = async () => {
@@ -50,7 +57,10 @@ class ProductPage extends React.Component {
       <div>
         <img src={ product.thumbnail } alt={ product.title } />
         <h3 data-testid="product-detail-name">{ product.title }</h3>
-        <CardButtonDetail product={ product } />
+        <CardButtonDetail
+          product={ product }
+          updatePage={ this.updatePage }
+        />
       </div>
     );
   }

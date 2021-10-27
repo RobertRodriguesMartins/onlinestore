@@ -4,14 +4,17 @@ import { addItemToCart } from '../services/CartItems';
 
 class CardButton extends Component {
   render() {
-    const { product } = this.props;
+    const { product, updatePage } = this.props;
 
     return (
       <div>
         <button
           type="button"
           data-testid="product-add-to-cart"
-          onClick={ () => addItemToCart(product) }
+          onClick={ () => {
+            updatePage();
+            addItemToCart(product);
+          } }
         >
           Adicionar ao carrinho
         </button>
@@ -26,6 +29,7 @@ CardButton.default = {
 
 CardButton.propTypes = {
   product: PropTypes.shape({}).isRequired,
+  updatePage: PropTypes.func.isRequired,
 };
 
 export default CardButton;
