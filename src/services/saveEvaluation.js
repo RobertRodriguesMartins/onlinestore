@@ -9,6 +9,6 @@ export function getReviews() {
 
 export function addReview(review) {
   const reviewList = getReviews();
-  const newReviewList = [...reviewList, review]
+  const newReviewList = [...reviewList, review];
   local.setItem('review', JSON.stringify(newReviewList));
 }
