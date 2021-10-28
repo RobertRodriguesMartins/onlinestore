@@ -16,7 +16,7 @@ class Card extends React.Component {
         <div data-testid="product">
           <h3>{ `Produto${index + 1}` }</h3>
           <img src={ product.thumbnail } alt={ product } />
-          <span>{ product.price }</span>
+          <p>{ product.price }</p>
         </div>
       </Link>
     );

@@ -49,31 +49,43 @@ class ChoosePrice extends React.Component {
       <div>
         {
           (media - dev < 0) ? (
-            <select onChange={ updateLimitPrices }>
-              <option value="-">-</option>
-              <option value={ `${mean}-max` }>
-                { `Menor que R$${mean}` }
-              </option>
-              <option value={ `${mean}-${sumMeanStd}-bet` }>
-                { `Entre R$${mean} e R$${sumMeanStd}` }
-              </option>
-              <option value={ `${sumMeanStd}-min` }>
-                { `Maior que R$${sumMeanStd}` }
-              </option>
-            </select>
+            <label htmlFor="select-range-price">
+              Preço:
+              <select
+                id="select-range-price"
+                onChange={ updateLimitPrices }
+              >
+                <option value="-">-</option>
+                <option value={ `${mean}-max` }>
+                  { `Menor que R$${mean}` }
+                </option>
+                <option value={ `${mean}-${sumMeanStd}-bet` }>
+                  { `Entre R$${mean} e R$${sumMeanStd}` }
+                </option>
+                <option value={ `${sumMeanStd}-min` }>
+                  { `Maior que R$${sumMeanStd}` }
+                </option>
+              </select>
+            </label>
           ) : (
-            <select onChange={ updateLimitPrices }>
-              <option value="-">-</option>
-              <option value={ `${difMeanStd}-max` }>
-                { `Menor que R$${difMeanStd}` }
-              </option>
-              <option value={ `${difMeanStd}-${sumMeanStd}-bet` }>
-                { `Entre R$${difMeanStd} e R$${sumMeanStd}` }
-              </option>
-              <option value={ `${sumMeanStd}-min` }>
-                { `Maior que R$${sumMeanStd}` }
-              </option>
-            </select>
+            <label htmlFor="select-range-price">
+              Preço:
+              <select
+                id="select-range-price"
+                onChange={ updateLimitPrices }
+              >
+                <option value="-">-</option>
+                <option value={ `${difMeanStd}-max` }>
+                  { `Menor que R$${difMeanStd}` }
+                </option>
+                <option value={ `${difMeanStd}-${sumMeanStd}-bet` }>
+                  { `Entre R$${difMeanStd} e R$${sumMeanStd}` }
+                </option>
+                <option value={ `${sumMeanStd}-min` }>
+                  { `Maior que R$${sumMeanStd}` }
+                </option>
+              </select>
+            </label>
           )
         }
       </div>

@@ -58,6 +58,8 @@ class Home extends React.Component {
     this.setState({
       productArray: products.results,
       showLoading: false,
+      inferiorLimitPrice: undefined,
+      superiorLimitPrice: undefined,
     });
   }
 
