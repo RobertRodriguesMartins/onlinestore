@@ -5,6 +5,7 @@ import { getProductsFromCategoryAndQuery } from '../services/api';
 import Card from '../components/Card';
 import CategoriesContainer from '../components/CategoriesContainer';
 import CardButton from '../components/CardButton';
+import ChoosePrice from '../components/ChoosePrice';
 
 class Home extends React.Component {
   constructor() {
@@ -16,7 +17,29 @@ class Home extends React.Component {
       category: undefined,
       startPage: true,
       refresh: false,
+      inferiorLimitPrice: undefined,
+      superiorLimitPrice: undefined,
     };
+  }
+
+  updateLimitPrices = ({ target }) => {
+    const { value } = target;
+    const values = value.split('-');
+    let min;
+    let max;
+    const maxLength = 3;
+    if (values.length === maxLength) {
+      min = parseFloat(values[0]);
+      max = parseFloat(values[1]);
+    } else if (values[1] === 'min') {
+      min = parseFloat(values[0]);
+    } else {
+      max = parseFloat(values[0]);
+    }
+    this.setState({
+      inferiorLimitPrice: min,
+      superiorLimitPrice: max,
+    });
   }
 
   updatePage = () => {
@@ -39,6 +62,7 @@ class Home extends React.Component {
   }
 
   renderCardContainer = (startPage, showLoading, productArray) => {
+    const { superiorLimitPrice, inferiorLimitPrice } = this.state;
     if (startPage) {
       return (
         <h2 data-testid="home-initial-message">
@@ -62,27 +86,41 @@ class Home extends React.Component {
     }
     return (
       <div>
-        {
-          productArray.map((product, index) => (
-            <div key={ index }>
-              <Card
-                product={ product }
-                index={ index }
-              />
-              {
-                product.shipping.free_shipping && (
-                  <span data-testid="free-shipping">
-                    Frete Grátis disponível.
-                  </span>
-                )
-              }
-              <CardButton
-                product={ product }
-                updatePage={ this.updatePage }
-              />
-            </div>
-          ))
-        }
+        <ChoosePrice
+          productArray={ productArray }
+          updateLimitPrices={ this.updateLimitPrices }
+        />
+        <div>
+          {
+            productArray
+              .filter((product) => {
+                const confmin = inferiorLimitPrice ? product.price >= inferiorLimitPrice
+                  : true;
+                const confmax = superiorLimitPrice ? product.price <= superiorLimitPrice
+                  : true;
+                return confmin && confmax;
+              })
+              .map((product, index) => (
+                <div key={ index }>
+                  <Card
+                    product={ product }
+                    index={ index }
+                  />
+                  {
+                    product.shipping.free_shipping && (
+                      <span data-testid="free-shipping">
+                        Frete Grátis disponível.
+                      </span>
+                    )
+                  }
+                  <CardButton
+                    product={ product }
+                    updatePage={ this.updatePage }
+                  />
+                </div>
+              ))
+          }
+        </div>
       </div>
     );
   }

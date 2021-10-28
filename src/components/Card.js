@@ -16,6 +16,7 @@ class Card extends React.Component {
         <div data-testid="product">
           <h3>{ `Produto${index + 1}` }</h3>
           <img src={ product.thumbnail } alt={ product } />
+          <span>{ product.price }</span>
         </div>
       </Link>
     );
@@ -27,6 +28,7 @@ Card.defaultProps = {
     thumbnail: '',
     id: '',
     category_id: '',
+    price: 0,
   },
   index: 0,
 };
@@ -36,6 +38,7 @@ Card.propTypes = {
     thumbnail: PropTypes.string,
     id: PropTypes.string,
     category_id: PropTypes.string,
+    price: PropTypes.number,
   }),
   index: PropTypes.number,
 };
