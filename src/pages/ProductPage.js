@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Carrinho from '../components/Carrinho';
+import EvaluationForm from '../components/EvaluationForm';
 import { getProductsFromCategoryAndQuery } from '../services/api';
 import CardButtonDetail from '../components/CardButtonDetail';
 
@@ -82,6 +83,7 @@ class ProductPage extends React.Component {
         {
           this.renderProduct(showLoading, product)
         }
+        <EvaluationForm product={ product } />
       </div>
     );
   }

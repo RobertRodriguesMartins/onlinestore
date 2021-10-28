@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { getCart, addItemToCart, removeItemToCart } from '../services/CartItems';
 
 class CartPage extends React.Component {
@@ -83,6 +84,12 @@ class CartPage extends React.Component {
             </div>
           ) : <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
         }
+        <Link
+          to="/checkout"
+          data-testid="checkout-products"
+        >
+          Finalizar compra
+        </Link>
       </div>
     );
   }
