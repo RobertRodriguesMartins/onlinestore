@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Carrinho from '../components/Carrinho';
 import EvaluationForm from '../components/EvaluationForm';
 import { getProductsFromCategoryAndQuery } from '../services/api';
+import CardButtonDetail from '../components/CardButtonDetail';
 
 class ProductPage extends React.Component {
   constructor() {
@@ -10,11 +11,18 @@ class ProductPage extends React.Component {
     this.state = {
       product: {},
       showLoading: false,
+      refresh: false,
     };
   }
 
   componentDidMount() {
     this.getProductById();
+  }
+
+  updatePage = () => {
+    this.setState((previousState) => ({
+      refresh: !previousState.refresh,
+    }));
   }
 
   getProductById = async () => {
@@ -32,6 +40,10 @@ class ProductPage extends React.Component {
   }
 
   renderProduct = (showLoading, product) => {
+    let productShipping;
+    if (product.shipping) {
+      productShipping = product.shipping.free_shipping;
+    }
     if (showLoading) {
       return (
         <h2>
@@ -50,6 +62,15 @@ class ProductPage extends React.Component {
       <div>
         <img src={ product.thumbnail } alt={ product.title } />
         <h3 data-testid="product-detail-name">{ product.title }</h3>
+        <CardButtonDetail
+          product={ product }
+          updatePage={ this.updatePage }
+        />
+        {
+          productShipping && (
+            <span data-testid="free-shipping"> Frete grátis disponível </span>
+          )
+        }
       </div>
     );
   }

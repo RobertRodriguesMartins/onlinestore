@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { addItemToCart } from '../services/CartItems';
 
-class CardButton extends Component {
+class CardButtonDetail extends Component {
   render() {
     const { product, updatePage } = this.props;
 
@@ -10,7 +10,7 @@ class CardButton extends Component {
       <div>
         <button
           type="button"
-          data-testid="product-add-to-cart"
+          data-testid="product-detail-add-to-cart"
           onClick={ () => {
             updatePage();
             addItemToCart(product);
@@ -23,13 +23,13 @@ class CardButton extends Component {
   }
 }
 
-CardButton.default = {
+CardButtonDetail.default = {
   product: {},
 };
 
-CardButton.propTypes = {
+CardButtonDetail.propTypes = {
   product: PropTypes.shape({}).isRequired,
   updatePage: PropTypes.func.isRequired,
 };
 
-export default CardButton;
+export default CardButtonDetail;
