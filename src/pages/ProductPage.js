@@ -4,6 +4,7 @@ import Carrinho from '../components/Carrinho';
 import EvaluationForm from '../components/EvaluationForm';
 import { getProductsFromCategoryAndQuery } from '../services/api';
 import CardButtonDetail from '../components/CardButtonDetail';
+import { addItemToCart, getCart, removeItemToCart } from '../services/CartItems';
 
 class ProductPage extends React.Component {
   constructor() {
@@ -39,9 +40,18 @@ class ProductPage extends React.Component {
     });
   }
 
+  getCartItem = (productId) => {
+    const cartItems = getCart();
+    const result = cartItems.find((el) => el[productId] !== undefined);
+
+    if (result) return result.qnt;
+  }
+
   renderProduct = (showLoading, product) => {
     let productShipping;
+    let cartItemQt;
     if (product.shipping) {
+      cartItemQt = this.getCartItem(product.id);
       productShipping = product.shipping.free_shipping;
     }
     if (showLoading) {
@@ -62,10 +72,39 @@ class ProductPage extends React.Component {
       <div>
         <img src={ product.thumbnail } alt={ product.title } />
         <h3 data-testid="product-detail-name">{ product.title }</h3>
-        <CardButtonDetail
-          product={ product }
-          updatePage={ this.updatePage }
-        />
+        <div>
+          <button
+            type="button"
+            data-testid="product-decrease-quantity"
+            onClick={ () => {
+              removeItemToCart(product);
+              this.updatePage();
+            } }
+            disabled={ !cartItemQt }
+          >
+            -
+          </button>
+          <span>
+            {
+              cartItemQt || 0
+            }
+          </span>
+          <button
+            type="button"
+            data-testid="product-increase-quantity"
+            onClick={ () => {
+              addItemToCart(product);
+              this.updatePage();
+            } }
+            disabled={ (product.available_quantity - getCart().qnt) <= 0 }
+          >
+            +
+          </button>
+          <CardButtonDetail
+            product={ product }
+            updatePage={ this.updatePage }
+          />
+        </div>
         {
           productShipping && (
             <span data-testid="free-shipping"> Frete grátis disponível </span>
