@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { getCart } from '../services/CartItems';
+import { getCart, addItemToCart, removeItemToCart } from '../services/CartItems';
 
 class CartPage extends React.Component {
   render() {
